@@ -55,7 +55,7 @@ public class VideoTest {
 		
 	@SuppressWarnings("static-access")
 	@Test
-	public final void testgetStat() {
+	public final void testGetStat() {
 		assertEquals(0, this.film.getStat());
 	}
 	
