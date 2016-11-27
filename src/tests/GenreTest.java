@@ -15,7 +15,7 @@ public class GenreTest {
 	private Genre genre;
 	
 	@Before
-	public void init(){
+	public void setUp(){
 		this.name = "Corde";
 		this.rename = "Tabouret";
 		
@@ -25,7 +25,7 @@ public class GenreTest {
 	}
 	
 	@Test
-	public void test() {
+	public void testGenre() {
 		
 		assertEquals(this.rename, this.genre.getNom());
 		assertEquals(2,this.genre.getNbEmprunts());
