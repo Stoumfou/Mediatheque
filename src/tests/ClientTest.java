@@ -2,6 +2,8 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.sql.Date;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -66,6 +68,18 @@ public class ClientTest {
 	}
 	
 	@Test
+	public void testSetters() throws OperationImpossible{
+		
+		this.client.setCategorie(this.catClient);
+		this.client.setAddresse(this.adresse);
+		this.client.setNom(this.nom);
+		this.client.setPrenom(this.prenom);
+		this.client.setReduc(99);
+		this.catClient.modifierCodeReducActif(true);
+		this.client.setCategorie(this.catClient,0);
+	}
+	
+	@Test
 	public void testGetters(){
 		assertEquals(this.nom, this.client.getNom());
 		assertEquals(this.prenom, this.client.getPrenom());
@@ -75,10 +89,16 @@ public class ClientTest {
 		assertEquals(0, this.client.getNbEmpruntsEffectues());
 		assertEquals(0, this.client.getNbEmpruntsEnCours());
 		assertEquals(0, this.client.getNbEmpruntsEnRetard());
+		assertEquals(0, Client.getStat());
+		assertEquals(0, Client.getnbEmpruntsTotal());
 		
 		assertEquals(0, this.client.getCoefTarif(), 0.000001f);
 		assertEquals(0, this.client.getCoefDuree(), 0.000001f);
+		assertEquals(0, this.client.getReduc());
+			
 	}
+	
+	
 	
 	@Test
 	public void testEmprunter() throws OperationImpossible, InvariantBroken{
@@ -102,11 +122,7 @@ public class ClientTest {
 		this.client.restituer(true);
 	}
 	
-	@Test
-	public void testCategorie() throws OperationImpossible{
-		
-		this.client.setCategorie(new CategorieClient("Poulet"));
-	}
+	
 	
 
 
