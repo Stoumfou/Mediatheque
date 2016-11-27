@@ -20,6 +20,7 @@ import mediatheque.client.Client;
 import mediatheque.document.Document;
 import mediatheque.document.Livre;
 import mediatheque.document.Video;
+import util.InvariantBroken;
 
 /**
  * @author Alexis
@@ -39,6 +40,8 @@ public class MediathequeTest {
 	
 	private Mediatheque mediatheque;
 	private Video film; 
+	private Video film2; 
+
     private int dureeFilm;
     private String mentionLegale;
 
@@ -71,7 +74,8 @@ public class MediathequeTest {
 		this.annee="2016";
 		this.genreFilm = new Genre("Comédie");
 		this.film = new Video(code,localisation,titre,auteur,annee,genreFilm,dureeFilm,mentionLegale);
-		
+		this.film2 = new Video("4444444",localisation,"Je suis un autre film",auteur,annee,genreFilm,dureeFilm,mentionLegale);
+
 		this.genre2 = "Action";
 		
 		this.mediatheque.ajouterLocalisation("404", "42");
@@ -387,34 +391,42 @@ public class MediathequeTest {
 
 	/**
 	 * Test method for {@link mediatheque.Mediatheque#ajouterDocument(mediatheque.document.Document)}.
+	 * @throws OperationImpossible 
 	 */
 	@Test
-	public void testAjouterDocument() {
-		fail("Not yet implemented");
+	public void testAjouterDocument() throws OperationImpossible {
+		mediatheque.ajouterDocument(this.film2);
+		assertEquals(2, mediatheque.getDocumentsSize());
 	}
 
 	/**
 	 * Test method for {@link mediatheque.Mediatheque#retirerDocument(java.lang.String)}.
+	 * @throws OperationImpossible 
 	 */
 	@Test
-	public void testRetirerDocument() {
-		fail("Not yet implemented");
+	public void testRetirerDocument() throws OperationImpossible {
+		this.mediatheque.retirerDocument("53455345");
 	}
 
 	/**
 	 * Test method for {@link mediatheque.Mediatheque#metEmpruntable(java.lang.String)}.
+	 * @throws InvariantBroken 
+	 * @throws OperationImpossible 
 	 */
 	@Test
-	public void testMetEmpruntable() {
-		fail("Not yet implemented");
+	public void testMetEmpruntable() throws OperationImpossible, InvariantBroken {
+		this.mediatheque.metEmpruntable("53455345");
 	}
 
 	/**
 	 * Test method for {@link mediatheque.Mediatheque#metConsultable(java.lang.String)}.
+	 * @throws InvariantBroken 
+	 * @throws OperationImpossible 
 	 */
 	@Test
-	public void testMetConsultable() {
-		fail("Not yet implemented");
+	public void testMetConsultable() throws OperationImpossible, InvariantBroken {
+		this.mediatheque.metEmpruntable("53455345");
+		this.mediatheque.metConsultable("53455345");
 	}
 
 	/**
@@ -422,7 +434,7 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testListerDocuments() {
-		fail("Not yet implemented");
+		this.mediatheque.listerDocuments();
 	}
 
 	/**
@@ -430,7 +442,7 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testGetDocumentAt() {
-		fail("Not yet implemented");
+		assertEquals(this.film,this.mediatheque.getDocumentAt(1));
 	}
 
 	/**
@@ -438,15 +450,30 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testGetDocumentsSize() {
-		fail("Not yet implemented");
+		assertEquals(1,this.mediatheque.getDocumentsSize());
 	}
 
 	/**
 	 * Test method for {@link mediatheque.Mediatheque#emprunter(java.lang.String, java.lang.String, java.lang.String)}.
+	 * @throws InvariantBroken 
+	 * @throws OperationImpossible 
 	 */
 	@Test
-	public void testEmprunter() {
-		fail("Not yet implemented");
+	public void testEmprunter() throws OperationImpossible, InvariantBroken {
+		this.mediatheque.metEmpruntable("53455345");
+		this.mediatheque.emprunter("BOUVET","Nicolas","53455345");
+	}
+	
+	/**
+	 * Test method for {@link mediatheque.Mediatheque#emprunter(java.lang.String, java.lang.String, java.lang.String)}.
+	 * @throws InvariantBroken 
+	 * @throws OperationImpossible 
+	 */
+	@Test (expected = OperationImpossible.class)
+	public void testEmprunterTwo() throws OperationImpossible, InvariantBroken {
+		this.mediatheque.metEmpruntable("53455345");
+		this.mediatheque.emprunter("BOUVET","Nicolas","53455345");
+		this.mediatheque.emprunter("PAMBOURG","Alexis","53455345");
 	}
 
 	/**
