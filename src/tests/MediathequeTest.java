@@ -79,7 +79,7 @@ public class MediathequeTest {
 		this.genre2 = "Action";
 		
 		this.mediatheque.ajouterLocalisation("404", "42");
-		
+				
 		this.categorieClient = new CategorieClient("france", 100, 30, 10, 1.5,false);
 		this.categorieClient2 = new CategorieClient("espagne", 200, 60, 20, 3,false);
 		
@@ -88,6 +88,7 @@ public class MediathequeTest {
 		this.client = new Client("Pambourg", "Alexis");
 		
 		this.mediatheque.ajouterDocument(this.film);
+		this.mediatheque.inscrire(this.client.getNom(), this.client.getPrenom(), "", this.categorieClient.getNom());
 	}
 
 	/**
@@ -550,18 +551,25 @@ public class MediathequeTest {
 
 	/**
 	 * Test method for {@link mediatheque.Mediatheque#changerCategorie(java.lang.String, java.lang.String, java.lang.String, int)}.
+	 * @throws OperationImpossible 
 	 */
 	@Test
-	public void testChangerCategorie() {
-		fail("Not yet implemented");
+	public void testChangerCategorie() throws OperationImpossible {
+
+		this.client.setCategorie(categorieClient);
 	}
 
 	/**
 	 * Test method for {@link mediatheque.Mediatheque#changerCodeReduction(java.lang.String, java.lang.String, int)}.
+	 * @throws OperationImpossible 
 	 */
 	@Test
-	public void testChangerCodeReduction() {
-		fail("Not yet implemented");
+	public void testChangerCodeReduction() throws OperationImpossible {
+		
+		this.client.setCategorie(categorieClient);
+		this.client.getCategorie().modifierCodeReducActif(true);
+		this.mediatheque.changerCodeReduction(this.client.getNom(), this.client.getPrenom(), 80);
+		assertEquals(80,this.client.getReduc());
 	}
 
 	/**
@@ -569,7 +577,7 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testChercherClient() {
-		fail("Not yet implemented");
+		assertEquals(this.client, this.mediatheque.chercherClient(this.client.getNom(), this.client.getPrenom()));
 	}
 
 	/**
@@ -577,7 +585,7 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testListerClients() {
-		fail("Not yet implemented");
+		this.mediatheque.listerClients();
 	}
 
 	/**
@@ -585,7 +593,7 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testExisteClient() {
-		fail("Not yet implemented");
+		assertEquals(true, this.mediatheque.existeClient(this.categorieClient));
 	}
 
 	/**
@@ -593,7 +601,7 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testGetClientAt() {
-		fail("Not yet implemented");
+		assertEquals(this.client, this.mediatheque.getClientAt(0));
 	}
 
 	/**
@@ -601,7 +609,7 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testGetClientsSize() {
-		fail("Not yet implemented");
+		assertEquals(1,this.mediatheque.getClientsSize());
 	}
 
 	/**
@@ -609,7 +617,7 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testFindClient() {
-		fail("Not yet implemented");
+		assertEquals(this.client, this.mediatheque.findClient(this.client.getNom(), this.client.getPrenom()));
 	}
 
 	/**
@@ -617,7 +625,7 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testAfficherStatistiques() {
-		fail("Not yet implemented");
+		this.mediatheque.afficherStatistiques();
 	}
 
 	/**
@@ -625,7 +633,7 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testGetNom() {
-		fail("Not yet implemented");
+		assertEquals("AP-NB", this.mediatheque.getNom());
 	}
 
 	/**
@@ -633,7 +641,9 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testInitFromFile() {
-		fail("Not yet implemented");
+		
+		Mediatheque save = new Mediatheque("Test Save");
+		assertEquals(true, save.initFromFile());
 	}
 
 	/**
@@ -641,7 +651,9 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testSaveToFile() {
-		fail("Not yet implemented");
+		
+		Mediatheque save = new Mediatheque("Test Save");
+		assertEquals(true,save.saveToFile());
 	}
 
 }
