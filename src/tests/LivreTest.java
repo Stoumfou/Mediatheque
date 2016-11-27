@@ -22,9 +22,10 @@ public class LivreTest {
 	private int nombrePage;
 	
 	private Livre livre;
+	private Livre livre2;
 	
 	@Before
-	public void init() throws OperationImpossible, InvariantBroken{
+	public void setUp() throws OperationImpossible, InvariantBroken{
 		
 		this.code = "azertyuiop";
 		this.localisation = new Localisation("Sc204","2E");
@@ -39,7 +40,7 @@ public class LivreTest {
 	}
 	
 	@Test
-	public void testGetters() throws InvariantBroken, OperationImpossible {
+	public void testLivreGetters() throws InvariantBroken, OperationImpossible {
 		
 		assertEquals(this.code, this.livre.getCode());
 		assertEquals(this.localisation, this.livre.getLocalisation());
@@ -51,7 +52,7 @@ public class LivreTest {
 	}
 	
 	@Test
-	public void test() throws InvariantBroken, OperationImpossible{
+	public void testLivre() throws InvariantBroken, OperationImpossible{
 		
 		this.livre.metEmpruntable();
 		
@@ -60,6 +61,16 @@ public class LivreTest {
 		assertEquals( 42, this.livre.dureeEmprunt());
 		assertEquals(0.5f, this.livre.tarifEmprunt(), 0.00001f);
 		assertEquals(true, this.livre.invariantLivre());
+	}
+	
+	@Test(expected = OperationImpossible.class) 
+	public void testLivreNbPageInf0() throws InvariantBroken, OperationImpossible{
+		this.livre2 = new Livre(code,localisation,titre,auteur,annee,genre,-1);
+	}
+	
+	@Test(expected = InvariantBroken.class)
+	public final void testVideoInvariantFalse() throws OperationImpossible, InvariantBroken {
+			this.livre2 = new Livre(code, localisation, titre, auteur, annee, genre, 0);
 	}
 
 }
