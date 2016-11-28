@@ -461,6 +461,7 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testEmprunter() throws OperationImpossible, InvariantBroken {
+		this.mediatheque.inscrire("BOUVET", "Nicolas", "ici", this.categorieClient.getNom());
 		this.mediatheque.metEmpruntable("53455345");
 		this.mediatheque.emprunter("Pambourg","Alexis","53455345");
 	}
@@ -596,26 +597,30 @@ public class MediathequeTest {
 	
 	/**
 	 * Test method for {@link mediatheque.Mediatheque#inscrire(java.lang.String, java.lang.String, java.lang.String, java.lang.String)}.
+	 * @throws OperationImpossible 
 	 */
 	@Test
-	public void testInscrire() {
-		fail("Not yet implemented");
+	public void testInscrire() throws OperationImpossible {
+		this.mediatheque.inscrire("Bouvet", "Nicolas", "ailleurs", this.categorieClient.getNom());
 	}
 
 	/**
 	 * Test method for {@link mediatheque.Mediatheque#inscrire(java.lang.String, java.lang.String, java.lang.String, java.lang.String, int)}.
+	 * @throws OperationImpossible 
 	 */
 	@Test
-	public void testInscrireStringStringStringStringInt() {
-		fail("Not yet implemented");
+	public void testInscrireCode() throws OperationImpossible {
+		this.mediatheque.inscrire("Bouvet", "Nicolas", "ailleurs", this.categorieClient.getNom(),69);
 	}
 
 	/**
 	 * Test method for {@link mediatheque.Mediatheque#resilier(java.lang.String, java.lang.String)}.
+	 * @throws OperationImpossible 
 	 */
 	@Test
-	public void testResilier() {
-		fail("Not yet implemented");
+	public void testResilier() throws OperationImpossible {
+		this.mediatheque.inscrire("Bouvet", "Tamo", "quelque part", this.categorieClient.getNom());
+		this.mediatheque.resilier("Bouvet", "Tamo");
 	}
 
 	/**
