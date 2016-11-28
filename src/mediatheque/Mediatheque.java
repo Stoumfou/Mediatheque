@@ -198,7 +198,7 @@ public final class Mediatheque implements Serializable {
 			System.out.println("Mediatheque: suppression d'une localisation.");
 			System.out.println("\t" + salle + "\t" + rayon);
 		}
-		//Erreur
+		//Erreur Inversion de rayon et salle
 		//Localisation l = chercherLocalisation(rayon, salle);
 		Localisation l = chercherLocalisation(salle, rayon);
 		if (l == null) {

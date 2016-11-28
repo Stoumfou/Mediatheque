@@ -502,6 +502,8 @@ public class Client implements Serializable {
          * de la classe.
          *   @return Nombre d'emprunts total
          */
+        //Erreur pas de visibilité
+        // OLD static int getnbEmpruntsTotal() {
         public static int getnbEmpruntsTotal() {
                 return nbEmpruntsTotal;
         }
@@ -510,6 +512,8 @@ public class Client implements Serializable {
          * de la classe.
          *   @return Nombre d'emprunts total
          */
+        //Erreur pas de visibilité
+        // OLD static int getStat() {
         public static int getStat() {
                 return nbEmpruntsTotal;
         }
