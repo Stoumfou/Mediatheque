@@ -70,7 +70,7 @@ public class VideoTest {
 	@SuppressWarnings("static-access")
 	@Test
 	public void testGetStat() {
-		assertEquals(1, this.film.getStat());
+		assertEquals(10, this.film.getStat());
 	}
 
 	/**

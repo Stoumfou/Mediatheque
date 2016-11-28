@@ -128,7 +128,8 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testSupprimerGenre() throws OperationImpossible {
-		this.mediatheque.supprimerGenre(this.genre);
+		this.mediatheque.ajouterGenre("Drama");
+		this.mediatheque.supprimerGenre("Drama");
 	}
 	
 	/**
@@ -217,8 +218,9 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testSupprimerLocalisation() throws OperationImpossible {
-		this.mediatheque.supprimerLocalisation("404", "42");
-		assertEquals(null, this.mediatheque.chercherLocalisation("404", "42"));
+		this.mediatheque.ajouterLocalisation("la", "bas");
+		this.mediatheque.supprimerLocalisation("la", "bas");
+		assertEquals(null, this.mediatheque.chercherLocalisation("la", "bas"));
 	}
 	
 	/**
@@ -303,7 +305,8 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testSupprimerCatClient() throws OperationImpossible {
-		this.mediatheque.supprimerCatClient("france");
+		this.mediatheque.ajouterCatClient("mexico", 10, 1.0, 0.1, 1.0, false);
+		this.mediatheque.supprimerCatClient("mexico");
 	}
 	
 	/**
@@ -444,7 +447,7 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testGetDocumentAt() {
-		assertEquals(this.film,this.mediatheque.getDocumentAt(1));
+		assertEquals(this.film,this.mediatheque.getDocumentAt(0));
 	}
 
 	/**
