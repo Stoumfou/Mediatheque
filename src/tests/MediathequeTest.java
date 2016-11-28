@@ -525,7 +525,7 @@ public class MediathequeTest {
 	 * Test method for {@link mediatheque.Mediatheque#inscrire(java.lang.String, java.lang.String, java.lang.String, java.lang.String)}.
 	 */
 	@Test
-	public void testInscrireStringStringStringString() {
+	public void testInscrire() {
 		fail("Not yet implemented");
 	}
 
@@ -547,10 +547,11 @@ public class MediathequeTest {
 
 	/**
 	 * Test method for {@link mediatheque.Mediatheque#modifierClient(mediatheque.client.Client, java.lang.String, java.lang.String, java.lang.String, java.lang.String, int)}.
+	 * @throws OperationImpossible 
 	 */
 	@Test
-	public void testModifierClient() {
-		fail("Not yet implemented");
+	public void testModifierClient() throws OperationImpossible {
+		this.mediatheque.modifierClient(this.client, "Pambourg", "Alexis", "ici", "Chat", 69);
 	}
 
 	/**
