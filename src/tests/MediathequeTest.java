@@ -327,10 +327,11 @@ public class MediathequeTest {
 
 	/**
 	 * Test method for {@link mediatheque.Mediatheque#ajouterCatClient(java.lang.String, int, double, double, double, boolean)}.
+	 * @throws OperationImpossible 
 	 */
 	@Test
-	public void testAjouterCatClient() {
-		fail("Not yet implemented");
+	public void testAjouterCatClient() throws OperationImpossible {
+		this.mediatheque.ajouterCatClient("espagne", 200, 60, 20, 3,false);
 	}
 
 	/**
