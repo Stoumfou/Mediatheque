@@ -645,18 +645,23 @@ public class MediathequeTest {
 
 		this.client.setCategorie(categorieClient);
 	}
+	
+	/**
+	 * Test method for {@link mediatheque.Mediatheque#changerCodeReduction(java.lang.String, java.lang.String, int)}.
+	 * @throws OperationImpossible 
+	 */
+	@Test (expected = OperationImpossible.class)
+	public void testChangerCodeNoClient() throws OperationImpossible {
+		this.mediatheque.changerCodeReduction("No", "No", 80);
+	}
 
 	/**
 	 * Test method for {@link mediatheque.Mediatheque#changerCodeReduction(java.lang.String, java.lang.String, int)}.
 	 * @throws OperationImpossible 
 	 */
-	@Test
-	public void testChangerCodeReduction() throws OperationImpossible {
-		
-		this.client.setCategorie(categorieClient);
-		this.client.getCategorie().modifierCodeReducActif(true);
+	@Test (expected = OperationImpossible.class)
+	public void testChangerCodeReductionNoCode() throws OperationImpossible {
 		this.mediatheque.changerCodeReduction(this.client.getNom(), this.client.getPrenom(), 80);
-		assertEquals(80,this.client.getReduc());
 	}
 
 	/**
