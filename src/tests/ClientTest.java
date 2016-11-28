@@ -1,8 +1,9 @@
+/**
+ * 
+ */
 package tests;
 
 import static org.junit.Assert.*;
-
-import java.sql.Date;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,8 +18,12 @@ import mediatheque.client.Client;
 import mediatheque.document.Livre;
 import util.InvariantBroken;
 
+/**
+ * @author Alexis
+ *
+ */
 public class ClientTest {
-
+	
 	private String nom;
 	private String prenom;
 	private String adresse;
@@ -33,9 +38,12 @@ public class ClientTest {
 	
 	private Client client;
 	
-	
-	@Before 
-	public void setUp() throws OperationImpossible, InvariantBroken{
+
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@Before
+	public void setUp() throws Exception {
 		this.nom = "me Rollin, they Hatin";
 		this.prenom = "Daisy";
 		this.adresse = "ici";
@@ -48,7 +56,6 @@ public class ClientTest {
 		
 		this.doc = new Livre("69", new Localisation("ici", "la bas"), "doc", "moi", "-42", new Genre("TP"), 18);
 		this.doc.metEmpruntable();
-		
 	}
 	
 	@Test(expected=OperationImpossible.class)
@@ -121,7 +128,4 @@ public class ClientTest {
 		
 		this.client.restituer(true);
 	}
-	
-	
-		
 }

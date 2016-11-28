@@ -28,15 +28,15 @@ public class Genre implements Serializable{
                 nbEmprunts=1;
         }
 
-        /**
-         * Emprunter augmente le nombre de fois qu un document de
-         * ce genre a ete emprunte
-         */
-        public void emprunter(){
-        	//Erreur ligne commenté
-        	// nbEmprunts++;
-               nbEmprunts++;
-        }
+	/**
+	 * Emprunter augmente le nombre de fois qu un document de ce genre a ete
+	 * emprunte
+	 */
+	public void emprunter() {
+		// Erreur ligne commenté
+		// nbEmprunts++;
+		nbEmprunts++;
+	}
 
         /**
          * <TT>getNom</TT> permet de connaitre le nom du genre

@@ -479,10 +479,14 @@ public class MediathequeTest {
 
 	/**
 	 * Test method for {@link mediatheque.Mediatheque#restituer(java.lang.String, java.lang.String, java.lang.String)}.
+	 * @throws InvariantBroken 
+	 * @throws OperationImpossible 
 	 */
 	@Test
-	public void testRestituer() {
-		fail("Not yet implemented");
+	public void testRestituer() throws OperationImpossible, InvariantBroken {
+		this.mediatheque.metEmpruntable("53455345");
+		this.mediatheque.emprunter("BOUVET","Nicolas","53455345");
+		this.mediatheque.restituer("BOUVET", "Nicolas", "53455345");
 	}
 
 	/**

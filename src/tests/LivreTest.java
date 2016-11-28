@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package tests;
 
 import static org.junit.Assert.*;
@@ -11,8 +14,12 @@ import mediatheque.OperationImpossible;
 import mediatheque.document.Livre;
 import util.InvariantBroken;
 
+/**
+ * @author Alexis
+ *
+ */
 public class LivreTest {
-
+	
 	private String code;
 	private Localisation localisation;
 	private String titre;
@@ -22,11 +29,11 @@ public class LivreTest {
 	private int nombrePage;
 	
 	private Livre livre;
-	private Livre livre2;
-	
+	/**
+	 * @throws java.lang.Exception
+	 */
 	@Before
-	public void setUp() throws OperationImpossible, InvariantBroken{
-		
+	public void setUp() throws Exception {
 		this.code = "azertyuiop";
 		this.localisation = new Localisation("Sc204","2E");
 		this.titre = "Comment faire des pommes au four";
@@ -65,12 +72,11 @@ public class LivreTest {
 	
 	@Test(expected = OperationImpossible.class) 
 	public void testLivreNbPageInf0() throws InvariantBroken, OperationImpossible{
-		this.livre2 = new Livre(code,localisation,titre,auteur,annee,genre,-1);
+		new Livre(code,localisation,titre,auteur,annee,genre,-1);
 	}
 	
 	@Test(expected = InvariantBroken.class)
 	public final void testVideoInvariantFalse() throws OperationImpossible, InvariantBroken {
-			this.livre2 = new Livre(code, localisation, titre, auteur, annee, genre, 0);
+			new Livre(code, localisation, titre, auteur, annee, genre, 0);
 	}
-
 }

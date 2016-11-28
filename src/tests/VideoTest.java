@@ -22,7 +22,7 @@ import util.InvariantBroken;
  *
  */
 public class VideoTest {
-	
+
 	private Video film; 
 	private Video film2;
     private int dureeFilm;
@@ -35,8 +35,7 @@ public class VideoTest {
     private String auteur;
     private String annee;
     private Genre genre;
-    private boolean empruntable;
-
+    
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -51,61 +50,97 @@ public class VideoTest {
 		this.annee="2016";
 		this.genre= new Genre("Comédie");
 		this.film = new Video(code, localisation, titre, auteur, annee, genre, dureeFilm, mentionLegale);
-	}
-		
-	@SuppressWarnings("static-access")
-	@Test
-	public final void testGetStat() {
-		assertEquals(0, this.film.getStat());
-	}
 	
+	}
+
+	/**
+	 * Test method for {@link mediatheque.document.Video#emprunter()}.
+	 * @throws InvariantBroken 
+	 * @throws OperationImpossible 
+	 */
 	@Test
-	public final void testEmprunter() throws OperationImpossible, InvariantBroken{
+	public void testEmprunter() throws OperationImpossible, InvariantBroken {
 		this.film.metEmpruntable();
 		assertEquals(true, this.film.emprunter());
 	}
-	
+
+	/**
+	 * Test method for {@link mediatheque.document.Video#getStat()}.
+	 */
+	@SuppressWarnings("static-access")
 	@Test
-	public final void testDureeEmprunt(){
+	public void testGetStat() {
+		assertEquals(1, this.film.getStat());
+	}
+
+	/**
+	 * Test method for {@link mediatheque.document.Video#dureeEmprunt()}.
+	 */
+	@Test
+	public void testDureeEmprunt() {
 		assertEquals(2*7, this.film.dureeEmprunt());
 	}
-	
+
+	/**
+	 * Test method for {@link mediatheque.document.Video#tarifEmprunt()}.
+	 */
 	@Test
-	public final void testTarifEmprunt(){
+	public void testTarifEmprunt() {
 		assertEquals(1.5, this.film.tarifEmprunt(),1e-15);
 	}
-	
+
+	/**
+	 * Test method for {@link mediatheque.document.Video#getMentionLegale()}.
+	 */
 	@Test
-	public final void testGetMentionLegale(){
+	public void testGetMentionLegale() {
 		assertEquals("Film Créative Commons", this.film.getMentionLegale());
 	}
-	
+
+	/**
+	 * Test method for {@link mediatheque.document.Video#getDureeFilm()}.
+	 */
 	@Test
-	public final void testGetDureeFilm() {
+	public void testGetDureeFilm() {
 		assertEquals(130, this.film.getDureeFilm());
 	}
-	
+
+	/**
+	 * Test method for {@link mediatheque.document.Video#invariantVideo()}.
+	 */
 	@Test
-	public final void testInvariantVideo() {
+	public void testInvariantVideo() {
 		assertEquals(true, this.film.invariantVideo());
 	}
 	
+	/**
+	 * Test method for {@link mediatheque.document.Video#invariantVideo()}.
+	 */
 	@Test
 	public final void testInvariantVideoDuree0() {
 		this.dureeFilm = 0;
 		assertEquals(this.film.invariant(), this.film.invariantVideo());
 	}
 	
+	/**
+	 * Test method for {@link mediatheque.document.Video#invariantVideo()}.
+	 */
 	@Test(expected = OperationImpossible.class)
 	public final void testVideoMentionLegalNull() throws OperationImpossible, InvariantBroken {
 			this.film2 = new Video(code, localisation, titre, auteur, annee, genre, dureeFilm, null);
 	}
 
+	/**
+	 * Test method for {@link mediatheque.document.Video#invariantVideo()}.
+	 */
 	@Test(expected = OperationImpossible.class)
 	public final void testVideoDuree0() throws OperationImpossible, InvariantBroken {
 			this.film2 = new Video(code, localisation, titre, auteur, annee, genre, 0, mentionLegale);
 	}
 
+	/**
+	 * Test method for {@link mediatheque.document.Video#invariantVideo()}.
+	 */
 	@Test(expected = InvariantBroken.class)
 	public final void testVideoInvariantFalse() throws OperationImpossible, InvariantBroken {
 			this.film2 = new Video(code, localisation, titre, auteur, annee, genre, -1, mentionLegale);
