@@ -462,7 +462,40 @@ public class MediathequeTest {
 	@Test
 	public void testEmprunter() throws OperationImpossible, InvariantBroken {
 		this.mediatheque.metEmpruntable("53455345");
-		this.mediatheque.emprunter("BOUVET","Nicolas","53455345");
+		this.mediatheque.emprunter("Pambourg","Alexis","53455345");
+	}
+	
+	/**
+	 * Test method for {@link mediatheque.Mediatheque#emprunter(java.lang.String, java.lang.String, java.lang.String)}.
+	 * @throws InvariantBroken 
+	 * @throws OperationImpossible 
+	 */
+	@Test (expected = OperationImpossible.class)
+	public void testEmprunterNoDoc() throws OperationImpossible, InvariantBroken {
+		this.mediatheque.metEmpruntable("53455345");
+		this.mediatheque.emprunter("Pambourg","Alexis","123");
+	}
+	
+	/**
+	 * Test method for {@link mediatheque.Mediatheque#emprunter(java.lang.String, java.lang.String, java.lang.String)}.
+	 * @throws InvariantBroken 
+	 * @throws OperationImpossible 
+	 */
+	@Test (expected = OperationImpossible.class)
+	public void testEmprunterNoEmpruntable() throws OperationImpossible, InvariantBroken {
+		this.mediatheque.emprunter("Pambourg","Alexis","53455345");
+	}
+	
+	/**
+	 * Test method for {@link mediatheque.Mediatheque#emprunter(java.lang.String, java.lang.String, java.lang.String)}.
+	 * @throws InvariantBroken 
+	 * @throws OperationImpossible 
+	 */
+	@Test (expected = OperationImpossible.class)
+	public void testEmprunterAlreadyEmprunter() throws OperationImpossible, InvariantBroken {
+		this.mediatheque.metEmpruntable("53455345");
+		this.mediatheque.emprunter("Pambourg","Alexis","53455345");
+		this.mediatheque.emprunter("Pambourg","Alexis","53455345");
 	}
 	
 	/**
@@ -473,8 +506,8 @@ public class MediathequeTest {
 	@Test (expected = OperationImpossible.class)
 	public void testEmprunterTwo() throws OperationImpossible, InvariantBroken {
 		this.mediatheque.metEmpruntable("53455345");
+		this.mediatheque.emprunter("Pambourg","Alexis","53455345");
 		this.mediatheque.emprunter("BOUVET","Nicolas","53455345");
-		this.mediatheque.emprunter("PAMBOURG","Alexis","53455345");
 	}
 
 	/**
@@ -485,32 +518,68 @@ public class MediathequeTest {
 	@Test
 	public void testRestituer() throws OperationImpossible, InvariantBroken {
 		this.mediatheque.metEmpruntable("53455345");
-		this.mediatheque.emprunter("BOUVET","Nicolas","53455345");
-		this.mediatheque.restituer("BOUVET", "Nicolas", "53455345");
+		this.mediatheque.emprunter("Pambourg","Alexis","53455345");
+		this.mediatheque.restituer("Pambourg", "Alexis", "53455345");
+	}
+	
+	/**
+	 * Test method for {@link mediatheque.Mediatheque#restituer(java.lang.String, java.lang.String, java.lang.String)}.
+	 * @throws InvariantBroken 
+	 * @throws OperationImpossible 
+	 */
+	@Test (expected = OperationImpossible.class)
+	public void testRestituerNoClient() throws OperationImpossible, InvariantBroken {
+		this.mediatheque.metEmpruntable("53455345");
+		this.mediatheque.emprunter("Pambourg","Alexis","53455345");
+		this.mediatheque.restituer("No", "No", "53455345");
+	}
+	
+	/**
+	 * Test method for {@link mediatheque.Mediatheque#restituer(java.lang.String, java.lang.String, java.lang.String)}.
+	 * @throws InvariantBroken 
+	 * @throws OperationImpossible 
+	 */
+	@Test (expected = OperationImpossible.class)
+	public void testRestituerNoDoc() throws OperationImpossible, InvariantBroken {
+		this.mediatheque.metEmpruntable("53455345");
+		this.mediatheque.emprunter("Pambourg","Alexis","53455345");
+		this.mediatheque.restituer("Pambourg", "Alexis", "123");
 	}
 
 	/**
 	 * Test method for {@link mediatheque.Mediatheque#verifier()}.
+	 * @throws InvariantBroken 
+	 * @throws OperationImpossible 
 	 */
 	@Test
-	public void testVerifier() {
-		fail("Not yet implemented");
+	public void testVerifier() throws OperationImpossible, InvariantBroken {
+		this.mediatheque.metEmpruntable("53455345");
+		this.mediatheque.emprunter("Pambourg","Alexis","53455345");
+		this.mediatheque.verifier();	
 	}
 
 	/**
 	 * Test method for {@link mediatheque.Mediatheque#listerFicheEmprunts()}.
+	 * @throws InvariantBroken 
+	 * @throws OperationImpossible 
 	 */
 	@Test
-	public void testListerFicheEmprunts() {
-		fail("Not yet implemented");
+	public void testListerFicheEmprunts() throws OperationImpossible, InvariantBroken {
+		this.mediatheque.metEmpruntable("53455345");
+		this.mediatheque.emprunter("Pambourg","Alexis","53455345");
+		this.mediatheque.listerFicheEmprunts();
 	}
 
 	/**
 	 * Test method for {@link mediatheque.Mediatheque#getFicheEmpruntAt(int)}.
+	 * @throws InvariantBroken 
+	 * @throws OperationImpossible 
 	 */
 	@Test
-	public void testGetFicheEmpruntAt() {
-		fail("Not yet implemented");
+	public void testGetFicheEmpruntAt() throws OperationImpossible, InvariantBroken {
+		this.mediatheque.metEmpruntable("53455345");
+		this.mediatheque.emprunter("Pambourg","Alexis","53455345");
+		this.mediatheque.getFicheEmpruntAt(0);	
 	}
 
 	/**
@@ -518,9 +587,13 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testGetFicheEmpruntsSize() {
-		fail("Not yet implemented");
+		assertEquals(0,this.mediatheque.getFicheEmpruntsSize());
 	}
 
+	/*
+	 * Client
+	 */
+	
 	/**
 	 * Test method for {@link mediatheque.Mediatheque#inscrire(java.lang.String, java.lang.String, java.lang.String, java.lang.String)}.
 	 */
@@ -551,7 +624,7 @@ public class MediathequeTest {
 	 */
 	@Test
 	public void testModifierClient() throws OperationImpossible {
-		this.mediatheque.modifierClient(this.client, "Pambourg", "Alexis", "ici", "Chat", 69);
+		this.mediatheque.modifierClient(this.client, "Pambourg", "Alexis", "ici", "france", 69);
 	}
 
 	/**
